@@ -1,4 +1,14 @@
 {
   "ecl.launchConfiguration": "not found",
-  "ecl.targetCluster": {}
+  "ecl.targetCluster": {},
+  "jupyter.kernels.filter": [
+    {
+      "path": "c:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "type": "pythonEnvironment"
+    },
+    {
+      "path": "c:\\Users\\HP\\AppData\\Local\\Microsoft\\WindowsApps\\python3.11.exe",
+      "type": "pythonEnvironment"
+    }
+  ]
 }

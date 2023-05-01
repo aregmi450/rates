@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-st.title('Movie Dataset Analysis')
+st.title('USD-NPR RATE CONVERTER')
 
 sns.set()
 plt.style.use('seaborn-whitegrid')
@@ -60,18 +60,18 @@ x = x.to_numpy()
 y = y.to_numpy()
 y = y.reshape(-1, 1)
 
-xtrain, xtest, ytrain, ytest = train_test_split(
-    x, y, test_size=0.2, random_state=42)
-model = Sequential()
-model.add(LSTM(128, return_sequences=True, input_shape=(xtrain.shape[1], 1)))
-model.add(LSTM(64, return_sequences=False))
-model.add(Dense(25))
-model.add(Dense(1))
-model.summary()
-# Training the model
-model.compile(optimizer='adam', loss='mean_squared_error')
-model.fit(xtrain, ytrain, batch_size=1, epochs=50)
-npr.tail(1)
-# features = [Open, High, Low, Adj Close, Volume]
-features = np.array([[127.867599, 127.867599, 127.867599, 0]])
-model.predict(features)
+# xtrain, xtest, ytrain, ytest = train_test_split(
+#     x, y, test_size=0.2, random_state=42)
+# model = Sequential()
+# model.add(LSTM(128, return_sequences=True, input_shape=(xtrain.shape[1], 1)))
+# model.add(LSTM(64, return_sequences=False))
+# model.add(Dense(25))
+# model.add(Dense(1))
+# model.summary()
+# # Training the model
+# model.compile(optimizer='adam', loss='mean_squared_error')
+# model.fit(xtrain, ytrain, batch_size=1, epochs=50)
+# npr.tail(1)
+# # features = [Open, High, Low, Adj Close, Volume]
+# features = np.array([[127.867599, 127.867599, 127.867599, 0]])
+# model.predict(features)

@@ -15,6 +15,13 @@ import streamlit as st
 
 st.title('USD-NPR RATE CONVERTER')
 
+st.write('This project contains dataset having exchange rates of USD in Nepal which will predict the rate of conversion.')
+
+st.image('dollarbills.jpg')
+
+if st.button('Predict Rate:'):
+    price = predict
+
 sns.set()
 plt.style.use('seaborn-whitegrid')
 # Reading the dataset and looking the information on the dataset
@@ -28,13 +35,15 @@ print(
     f'This dataset contains exchange rates of USD in Nepal from {npr.Date.min()} {npr.Date.max()}')
 print(f'Total Days = {(npr.Date.max() - npr.Date.min()).days} days')
 npr.describe()
+
 # Plot showing rate of change of exchange rate
-plt.figure(figsize=(10, 4))
-plt.title("NPR - USD Exchange Rate")
+st.title("NPR - USD Exchange Rate")
+graph = plt.figure(figsize=(10, 4))
 plt.xlabel('Date')
 plt.ylabel("Close")
 plt.plot(npr['Date'], npr['Close'])
-plt.show()
+st.pyplot(graph)
+
 # Using Linear Regression Model to Predict
 # splitting data into train and test sets
 
@@ -59,6 +68,10 @@ y = npr["Close"]
 x = x.to_numpy()
 y = y.to_numpy()
 y = y.reshape(-1, 1)
+
+# st.dataframe(npr)
+# st. table(npr[["Date", "Open", "Close"]])
+
 
 # xtrain, xtest, ytrain, ytest = train_test_split(
 #     x, y, test_size=0.2, random_state=42)

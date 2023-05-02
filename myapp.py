@@ -23,7 +23,7 @@ st.image('dollarbills.jpg')
 sns.set()
 plt.style.use('seaborn-whitegrid')
 # Reading the dataset and looking the information on the dataset
-npr = pd.read_csv('Conversion.csv')
+npr = pd.read_csv('Conversion2.csv')
 npr.head()
 # Finding out the information about dataset data
 npr.info()
@@ -48,7 +48,7 @@ st.pyplot(graph)
 x = np.array(npr.index).reshape(-1, 1)
 y = npr['Close']
 xtrain, xtest, ytrain, ytest = train_test_split(
-    x, y, test_size=0.2, random_state=42)
+    x, y, test_size=0.05, random_state=42)
 # Feature Scaling
 scaler = StandardScaler().fit(xtrain)
 lm = LinearRegression()

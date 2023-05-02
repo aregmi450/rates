@@ -19,8 +19,6 @@ st.write('This project contains dataset having exchange rates of USD in Nepal wh
 
 st.image('dollarbills.jpg')
 
-if st.button('Predict Rate:'):
-    price = predict
 
 sns.set()
 plt.style.use('seaborn-whitegrid')
@@ -37,7 +35,7 @@ print(f'Total Days = {(npr.Date.max() - npr.Date.min()).days} days')
 npr.describe()
 
 # Plot showing rate of change of exchange rate
-st.title("NPR - USD Exchange Rate")
+st.title("NPR - USD Exchange Rate Graph")
 graph = plt.figure(figsize=(10, 4))
 plt.xlabel('Date')
 plt.ylabel("Close")
@@ -55,36 +53,13 @@ xtrain, xtest, ytrain, ytest = train_test_split(
 scaler = StandardScaler().fit(xtrain)
 lm = LinearRegression()
 lm.fit(xtrain, ytrain)
+price = lm.predict(xtest)
+
 # Use model to make predictions
-y_pred = lm.predict(xtest)
+st.write('The regression model predicts the rate of USD to be following using Linear Regression Model')
+st.write(price)
 
 # Printout relevant metrics
 print("Model Coefficients:", lm.coef_)
-print("Mean Absolute Error:", mean_absolute_error(ytest, y_pred))
-print("Coefficient of Determination:", r2_score(ytest, y_pred))
-# Using LSTM Model to Predict
-x = npr[["Open", "High", "Low", "Volume"]]
-y = npr["Close"]
-x = x.to_numpy()
-y = y.to_numpy()
-y = y.reshape(-1, 1)
-
-# st.dataframe(npr)
-# st. table(npr[["Date", "Open", "Close"]])
-
-
-# xtrain, xtest, ytrain, ytest = train_test_split(
-#     x, y, test_size=0.2, random_state=42)
-# model = Sequential()
-# model.add(LSTM(128, return_sequences=True, input_shape=(xtrain.shape[1], 1)))
-# model.add(LSTM(64, return_sequences=False))
-# model.add(Dense(25))
-# model.add(Dense(1))
-# model.summary()
-# # Training the model
-# model.compile(optimizer='adam', loss='mean_squared_error')
-# model.fit(xtrain, ytrain, batch_size=1, epochs=50)
-# npr.tail(1)
-# # features = [Open, High, Low, Adj Close, Volume]
-# features = np.array([[127.867599, 127.867599, 127.867599, 0]])
-# model.predict(features)
+print("Mean Absolute Error:", mean_absolute_error(ytest, price))
+print("Coefficient of Determination:", r2_score(ytest, price))
